@@ -3,11 +3,8 @@ on: push
 
 jobs:
   build-app:
-    strategy:
-      matrix:
-        os: [ windows-latest ]
     name: Build the application
-    runs-on: ${{ matrix.os }}
+    runs-on: windows-latest
     steps:
       - name: checkout
         uses: actions/checkout@v2
