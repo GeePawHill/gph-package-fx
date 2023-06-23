@@ -1,6 +1,7 @@
 plugins {
     // Apply the application plugin to add support for building a CLI application in Java.
     application
+    id("org.openjfx.javafxplugin") version "0.0.14"
 }
 
 repositories {
@@ -18,7 +19,15 @@ if (currentOS.isMacOsX) {
     platform = "win"
 }
 
-val javaFXVersion = "17"
+javafx {
+    version = "17"
+    modules = mutableListOf(
+        "javafx.controls",
+        "javafx.graphics",
+        "javafx.fxml",
+    )
+}
+
 val appClassName = "dev.vulture.packagefx.App"
 val appModuleName = "dev.vulture.packagefx"
 
@@ -26,12 +35,12 @@ val compiler = javaToolchains.compilerFor {
     languageVersion.set(JavaLanguageVersion.of(JavaVersion.VERSION_17.majorVersion))
 }
 
-dependencies {
-    implementation("org.openjfx:javafx-base:${javaFXVersion}:${platform}")
-    implementation("org.openjfx:javafx-controls:${javaFXVersion}:${platform}")
-    implementation("org.openjfx:javafx-graphics:${javaFXVersion}:${platform}")
-    implementation("org.openjfx:javafx-fxml:${javaFXVersion}:${platform}")
-}
+//dependencies {
+//    implementation("org.openjfx:javafx-base:${javaFXVersion}:${platform}")
+//    implementation("org.openjfx:javafx-controls:${javaFXVersion}:${platform}")
+//    implementation("org.openjfx:javafx-graphics:${javaFXVersion}:${platform}")
+//    implementation("org.openjfx:javafx-fxml:${javaFXVersion}:${platform}")
+//}
 
 application {
     // Define the main class for the application.
